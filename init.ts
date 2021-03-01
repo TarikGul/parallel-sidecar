@@ -57,15 +57,17 @@ const main = async () => {
 
     const asyncCallsQueue = createIterable(minHeight, maxHeight);
 
-    console.log(`There are ${asyncCallsQueue.length} blocks to query`)
+    console.log(`There are ${asyncCallsQueue.length} blocks to query`);
 
     parallel(asyncCallsQueue, (err, results) => {
         if (err) {
             console.log(err)
         } else {
+            // Doesnt output results due to not passing in a callback with a specific output
+            // Reference the docs here, I just have it returning a promise.
+            // https://caolan.github.io/async/v3/docs.html#parallel
             console.log(results);
         }
-
     });
 }
 
