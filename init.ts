@@ -1,4 +1,4 @@
-import { parallel } from 'async';
+import { parallel, AsyncFunction } from 'async';
 import axios, { AxiosResponse } from 'axios';
 
 const minHeight: number = 100;
@@ -33,10 +33,10 @@ const asyncQuery = async (height: number) => {
 }
 
 const createIterable = (minHeight: number, maxHeight: number) => {
-    const asyncFunctions: any[] = [];
+    const asyncFunctions: AsyncFunction<unknown>[] = [];
 
     for(let height = minHeight; height < maxHeight; height++) {
-        const call: Function = () => asyncQuery(height);
+        const call: AsyncFunction<unknown> = () => asyncQuery(height);
         
         asyncFunctions.push(call);
     }
