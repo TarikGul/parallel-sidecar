@@ -1,13 +1,14 @@
 import { parallel, AsyncFunction } from 'async';
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 
-const minHeight: number = 100;
-const maxHeight: number = 1000;
+const minHeight: number = 4000;
+const maxHeight: number = 5000;
 
 const URL: string = process.env.URL ? process.env.URL : 'http://127.0.0.1:8080';
 
 const testConnection = async () => {
-    const route = '/node/network'
+    const route = '/node/network';
+
     const connection = await axios.get(URL + route)
         .then((res) => {
             if (!res.data.isSyncing) {
@@ -45,7 +46,6 @@ const createIterable = (minHeight: number, maxHeight: number) => {
 }
 
 const main = async () => {
-    
     // Test connection 
     const connection = await testConnection();
 
